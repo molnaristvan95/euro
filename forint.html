@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style rel="stylesheet" type="text/css">
+  :root{
+    --divide:65%;
+  }
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #000;
+      color: #ffab;
+    }
+    center{
+      margin:2vh auto;
+      font-size:2rem;
+    }
+    input{
+      background:#000;
+      color:#ffab;
+      text-align:center;
+      font-size:2rem;
+    }
+    input::placeholder{
+      font-size:1rem;
+    }
+    form>*{
+      display:inline-block;
+      width:var(--divide);
+      margin-top:16px;
+    }
+    input{
+      width:calc(100% - var(--divide) - 2%);
+    }
+    #clear{
+      display:block;
+      width:100%;
+    }
+    label{
+      text-align:right;
+    }
+    a{
+      margin:2vh auto;
+      display:block;
+      color:#937;
+      text-align: center;
+      zoom:1.5;
+    }
+  </style>
+</head>
+<body>
+  <center>Euró-Forint árszámítás</center>
+  <form>
+    <label>1€ = ft?</label>
+    <input type="text" id="oneEur" maxlength="6" placeholder="Mennyi 1euro?" value="383.20">
+    <label>Mennyi eurót akarsz átszámítani?</label>
+    <input type="text" id="euro" maxlength="4" placeholder="A tétel értéke">
+    <label>Az ár Forintban számolva</label>
+    <input type="text" id="forint" placeholder="Ár forintban" disabled>
+    <input id="clear" type="button" value="Töröl">
+  </form>
+  <a href="https://www.google.com/search?q=1+eur+to+huf%3F&oq=1+eur+to+huf%3F&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQIxgnMgcIAhAAGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgcIBxAAGIAEMgcICBAAGIAEMgcICRAAGIAEMgcIChAAGIAEMgcICxAAGIAEMggIDBAAGBYYHjIICA0QABgWGB4yCAgOEAAYFhge0gEINTczOGowajeoAgCwAgA&client=ms-android-samsung-ga-rev1&sourceid=chrome-mobile&ie=UTF-8">Mennyi most egy Euró a Google szerint?</a>
+  <img src="" alt="qr code image">
+  <script type="text/javascript">
+  const id = (i) => {
+  return document.getElementById(i);
+  };
+  id('euro').addEventListener('keyup', () => {
+    let one = parseFloat(id('oneEur').value),
+    eur = parseFloat(id('euro').value),
+    ft = one * eur;
+    id('forint').value = Math.round(ft);
+  });
+  
+  id('clear').addEventListener('click', () => {
+    id('euro').value = '';
+    id('euro').focus();
+  })
+  </script>
+</body>
+</html>
